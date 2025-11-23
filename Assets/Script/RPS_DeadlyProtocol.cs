@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 
 public class RPS_DeadlyProtocol : MonoBehaviour
@@ -15,10 +16,10 @@ public class RPS_DeadlyProtocol : MonoBehaviour
     private BaseAI currentAI;
     private bool isGameActive = true;
 
-    public Text statusText;
-    public Text scoreText;
-    public Text livesText;
-    public Text timerText;
+    public TMPro.TextMeshProUGUI statusText;
+    public TMPro.TextMeshProUGUI scoreText;
+    public TMPro.TextMeshProUGUI livesText;
+    public TMPro.TextMeshProUGUI timerText;
 
     public int PlayerScore => playerScore;
     public int CurrentLives => currentLives;
@@ -67,7 +68,7 @@ public class RPS_DeadlyProtocol : MonoBehaviour
     {
         if (!isGameActive) return;
         timer = decisionTimeLimit;
-        statusText.text = "Choose your move: Rock, Paper, or Scissors?";
+        statusText.text = "Choose your power: Rock, Paper, Scissors?";
     }
 
     public void OnRockChosen() { PlayerChoseMove(Move.Rock); }
@@ -116,11 +117,11 @@ public class RPS_DeadlyProtocol : MonoBehaviour
     void PlayerWonRound()
     {
         playerScore++;
-        statusText.text += "\n✅ YOU WIN! Score +1.";
+        statusText.text += "YOU WIN! Score +1.";
 
         if (playerScore >= scoreToWin)
         {
-            statusText.text = "🚨 FINAL PROTOCOL UNLOCKED! Prepare to face ORACLE-X!";
+            statusText.text = "FINAL PROTOCOL UNLOCKED! Prepare to face ORACLE-X!";
             isGameActive = false;
         }
     }
@@ -131,16 +132,16 @@ public class RPS_DeadlyProtocol : MonoBehaviour
 
         if (timeOut)
         {
-            statusText.text = "❌ TIME OUT! AI chose " + aMove.ToString() + ". Life -1.";
+            statusText.text = "TIME OUT! AI chose " + aMove.ToString() + ". Life -1.";
         }
         else
         {
-            statusText.text += "\n❌ YOU LOSE! AI Chose: " + aMove.ToString() + ". Life -1.";
+            statusText.text += "YOU LOSE! AI Chose: " + aMove.ToString() + ". Life -1.";
         }
 
         if (currentLives <= 0)
         {
-            statusText.text = "💀 GAME OVER! ORACLE-X has defeated you.";
+            statusText.text = "GAME OVER! ORACLE-X has defeated you.";
             isGameActive = false;
             Time.timeScale = 0;
         }
@@ -158,7 +159,7 @@ public class RPS_DeadlyProtocol : MonoBehaviour
 
         if (currentAI.IsOverclocked())
         {
-            result += "\n\n⚠️ **AI STATUS: OVERCLOCK MODE ACTIVATED!**";
+            result += "**AI STATUS: OVERCLOCK MODE ACTIVATED!**";
         }
         statusText.text = result;
     }
