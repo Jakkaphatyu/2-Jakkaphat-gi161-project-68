@@ -22,6 +22,7 @@ public class RPS_FinalProtocol : MonoBehaviour
     public AudioClip loseSound;
     public AudioClip gameOverSound;
     public AudioClip backgroundMusic;
+    public AudioClip finalVictorySound;
 
     private int finalBossScore = 0;
     private int currentLives;
@@ -154,6 +155,20 @@ public class RPS_FinalProtocol : MonoBehaviour
             if (statusText != null) statusText.text = "\n\nESCAPED!PROTOCOL OVERRIDE SUCCESSFUL! YOU ARE FREE.";
             isGameActive = false;
             Time.timeScale = 0;
+
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
+
+            if (audioSource != null && finalVictorySound != null)
+            {
+                audioSource.PlayOneShot(finalVictorySound);
+            }
+            else if (audioSource != null && winSound != null)
+            {
+                audioSource.PlayOneShot(winSound);
+            }
         }
     }
 
