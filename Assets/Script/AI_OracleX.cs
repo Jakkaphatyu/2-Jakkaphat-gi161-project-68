@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// AI_OracleX.cs สืบทอดจาก BaseAI
 public class AI_OracleX : BaseAI
 {
     private int[] playerMoveHistory = new int[3];
@@ -22,7 +23,6 @@ public class AI_OracleX : BaseAI
 
     public override Move GetAIMove()
     {
-        // คาดเดาหาตัวเลือกที่ผู้เล่นเลือกบ่อยที่สุด
         int predictedMoveIndex = 0;
         for (int i = 1; i < playerMoveHistory.Length; i++)
         {
@@ -31,10 +31,8 @@ public class AI_OracleX : BaseAI
                 predictedMoveIndex = i;
             }
         }
-        // ตัวเลือกที่ชนะทางตัวเลือกที่ผู้เล่นเลือกบ่อยที่สุด
-        Move winningMove = GetWinningMove((Move)predictedMoveIndex); // ใช้ Helper จาก BaseAI
+        Move winningMove = GetWinningMove((Move)predictedMoveIndex);
 
-        // คำนวณโอกาสที่ AI จะเลือก Winning Move
         float currentWinChance = Mathf.Min(MAX_WIN_CHANCE, BASE_WIN_CHANCE + (roundsPassed * difficultyIncreaseRate));
 
         if (Random.value < currentWinChance)
@@ -49,7 +47,6 @@ public class AI_OracleX : BaseAI
 
     public override bool IsOverclocked()
     {
-        // เงื่อนไข Overclock: โอกาสชนะทางเกิน 50%
         float currentWinChance = Mathf.Min(MAX_WIN_CHANCE, BASE_WIN_CHANCE + (roundsPassed * difficultyIncreaseRate));
         return roundsPassed >= 3 && currentWinChance > 0.5f;
     }

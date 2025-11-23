@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 
@@ -27,6 +28,7 @@ public class RPS_DeadlyProtocol : MonoBehaviour
 
     public AudioClip selectionSound;
     private AudioSource audioSource;
+    public AudioClip backgroundMusic;
 
     // --------------------------------------------------------------------
 
@@ -39,6 +41,13 @@ public class RPS_DeadlyProtocol : MonoBehaviour
         if (audioSource == null)
         {
             Debug.LogError("AudioSource Component not found on GameManager!");
+        }
+
+        if (audioSource != null && backgroundMusic != null)
+        {
+            audioSource.clip = backgroundMusic;
+
+            audioSource.Play();
         }
     }
 
@@ -104,6 +113,8 @@ public class RPS_DeadlyProtocol : MonoBehaviour
         {
             audioSource.PlayOneShot(selectionSound);
         }
+
+
     }
 
     void DetermineWinner(Move pMove, Move aMove)
@@ -137,6 +148,8 @@ public class RPS_DeadlyProtocol : MonoBehaviour
         {
             statusText.text = "FINAL PROTOCOL UNLOCKED! Prepare to face ORACLE-X!";
             isGameActive = false;
+
+            Invoke("LoadFinalScene", 3f);
         }
     }
 
@@ -159,6 +172,12 @@ public class RPS_DeadlyProtocol : MonoBehaviour
             isGameActive = false;
             Time.timeScale = 0;
         }
+    }
+
+    void LoadFinalScene()
+    {
+        Time.timeScale = 1; 
+        SceneManager.LoadScene("FinalProtocolScene"); 
     }
 
     void UpdateUI()
