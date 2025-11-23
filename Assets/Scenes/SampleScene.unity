@@ -183,8 +183,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.68765575, g: 0.9136193, b: 0.9528302, a: 1}
+  m_Sprite: {fileID: -2067518149604926124, guid: 8623611b22730a5439bda5d6a0700516, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -203,8 +203,8 @@ Transform:
   m_GameObject: {fileID: 184466142}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0039, y: -0.0203, z: 0}
-  m_LocalScale: {x: 17.765848, y: 10.0205, z: 1}
+  m_LocalPosition: {x: 0.0171, y: -0.024, z: 0}
+  m_LocalScale: {x: 1.7303725, y: 0.9708046, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -620,8 +620,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 165}
-  m_SizeDelta: {x: 381.0644, y: 137.228}
+  m_AnchoredPosition: {x: 97.85803, y: 7}
+  m_SizeDelta: {x: 1141.1892, y: 264.5216}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &499799585
 MonoBehaviour:
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -483.71594, y: 0, z: -290.95703, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPS_DeadlyProtocol
   scoreToWin: 5
-  maxLives: 3
+  maxLives: 5
   decisionTimeLimit: 15
   aiDifficultyRate: 0.1
   statusText: {fileID: 499799585}

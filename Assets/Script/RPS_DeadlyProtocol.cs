@@ -98,7 +98,7 @@ public class RPS_DeadlyProtocol : MonoBehaviour
 
         if (pMove == aMove)
         {
-            statusText.text += "\nIt's a Tie! ORACLE-X is re-processing...";
+            statusText.text += "\n\nIt's a Tie! ORACLE-X is re-processing";
         }
         else if ((pMove == Move.Rock && aMove == Move.Scissors) ||
                   (pMove == Move.Paper && aMove == Move.Rock) ||
@@ -117,7 +117,7 @@ public class RPS_DeadlyProtocol : MonoBehaviour
     void PlayerWonRound()
     {
         playerScore++;
-        statusText.text += "YOU WIN! Score +1.";
+        statusText.text += "\n\nYOU WIN!";
 
         if (playerScore >= scoreToWin)
         {
@@ -155,11 +155,11 @@ public class RPS_DeadlyProtocol : MonoBehaviour
 
     void UpdateStatus(Move pMove, Move aMove)
     {
-        string result = "You chose: **" + pMove.ToString() + "** | AI chose: **" + aMove.ToString() + "**";
+        string result = "You chose:" + pMove.ToString() + "\n\nOracleX chose:" + aMove.ToString() + "";
 
         if (currentAI.IsOverclocked())
         {
-            result += "**AI STATUS: OVERCLOCK MODE ACTIVATED!**";
+            result += "\n\nOracleX STATUS: OVERCLOCK MODE ACTIVATED!  ";
         }
         statusText.text = result;
     }
