@@ -32,6 +32,11 @@ public class RPS_FinalProtocol : MonoBehaviour
     private AudioSource audioSource;
     private int maxLives = 3;
 
+    public GameObject gameOverPanel;
+    public GameObject restartButton;
+    public GameObject backToMenuButton;
+    public string mainMenuSceneName = "MainMenuScene";
+
     // --------------------------------------------------------------------
 
     void Start()
@@ -63,9 +68,22 @@ public class RPS_FinalProtocol : MonoBehaviour
         finalBossScore = 0;
         isGameActive = true;
         currentAI.Reset();
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (restartButton != null) restartButton.SetActive(false);
+        if (backToMenuButton != null) backToMenuButton.SetActive(false);
         Time.timeScale = 1;
         UpdateUI();
         StartNewRound();
+        if (audioSource != null && backgroundMusic != null)
+        {
+            audioSource.clip = backgroundMusic;
+            audioSource.loop = true;
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
     }
 
     void Update()
@@ -201,6 +219,9 @@ public class RPS_FinalProtocol : MonoBehaviour
             {
                 audioSource.PlayOneShot(gameOverSound);
             }
+            if (gameOverPanel != null) gameOverPanel.SetActive(true);
+            if (restartButton != null) restartButton.SetActive(true);
+            if (backToMenuButton != null) backToMenuButton.SetActive(true);
 
         }
         else if (timeOut)
@@ -234,6 +255,12 @@ public class RPS_FinalProtocol : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("MainGameScene");
+        InitializeGame();
+    }
+
+    public void BackToMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }
