@@ -25,12 +25,21 @@ public class RPS_DeadlyProtocol : MonoBehaviour
     public int CurrentLives => currentLives;
     public bool IsGameActive => isGameActive;
 
+    public AudioClip selectionSound;
+    private AudioSource audioSource;
+
     // --------------------------------------------------------------------
 
     void Start()
     {
         currentAI = new AI_OracleX(aiDifficultyRate);
         InitializeGame();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource Component not found on GameManager!");
+        }
     }
 
     void Update()
@@ -90,6 +99,11 @@ public class RPS_DeadlyProtocol : MonoBehaviour
         {
             Invoke("StartNewRound", 2f);
         }
+
+        if (audioSource != null && selectionSound != null)
+        {
+            audioSource.PlayOneShot(selectionSound);
+        }
     }
 
     void DetermineWinner(Move pMove, Move aMove)
@@ -136,12 +150,12 @@ public class RPS_DeadlyProtocol : MonoBehaviour
         }
         else
         {
-            statusText.text += "YOU LOSE! AI Chose: " + aMove.ToString() + ". Life -1.";
+            statusText.text += "\n\nYOU LOSE! AI Chose: " + aMove.ToString() + ". Life -1.";
         }
 
         if (currentLives <= 0)
         {
-            statusText.text = "GAME OVER! ORACLE-X has defeated you.";
+            statusText.text = "\n\nGAME OVER! ORACLE-X has defeated you.";
             isGameActive = false;
             Time.timeScale = 0;
         }
